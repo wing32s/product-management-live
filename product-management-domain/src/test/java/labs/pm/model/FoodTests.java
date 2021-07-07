@@ -33,4 +33,27 @@ class FoodTests {
 		assertEquals(expectedString, f.toString());
 	}
 
+	@Test
+	void testFoodDiscount() { 
+		Food beforeFood = new Food(100, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now().minusDays(3));
+		Food todayFood = new Food(100, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now());
+		Food afterFood = new Food(100, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now().plusDays(3));
+		
+		assertEquals(0.40, beforeFood.getDiscount().doubleValue());
+		assertEquals(0, todayFood.getDiscount().doubleValue());
+		assertEquals(0, afterFood.getDiscount().doubleValue());
+	}
+
+	@Test
+	void testFoodApplyRating() { 
+		Food f = new Food(100, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.ofYearDay(2021, 5));
+		Product f2 = f.applyRating(Rating.THREE_STAR);
+		
+		assertEquals(f, f2);
+	}
+
 }

@@ -48,5 +48,32 @@ public class Food extends Product {
 	public String toString() {
 		return super.toString() + " " + bestBeforeDate;
 	}
+	
+	/** 
+	 * Calculates discount based on product price and
+	 * {@link DISCOUNT_RATE discount rate}.  The discount price is zero
+	 * while the current date comes before or is the same as the 
+	 * {@link getBestBeforeDate() best before date}.
+	 *
+	 * @return a {@link java.math.BigDecimal BigDecimal} value 
+        * of the discount
+	 */
+	@Override 
+	public BigDecimal getDiscount() { 
+		if (LocalDate.now().isAfter(bestBeforeDate)) {
+			return super.getDiscount();
+		} else {
+			return BigDecimal.ZERO;
+		}
+	}
+
+	/**
+	 * {@docRoot}
+	 */
+	@Override
+	public Food applyRating(Rating rating) {
+		// TODO Auto-generated method stub
+		return new Food(getId(), getName(), getPrice(), rating, bestBeforeDate);
+	}
 
 }

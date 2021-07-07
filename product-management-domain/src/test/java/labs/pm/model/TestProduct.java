@@ -18,4 +18,10 @@ public class TestProduct extends Product {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public Product applyRating(Rating rating) {
+		// TODO Auto-generated method stub
+		return new TestProduct(getId(), getName(), getPrice(), rating);
+	}
+
 }

@@ -14,7 +14,7 @@ class ProductTests {
 
 	@Test
 	void testDefault() {
-		Product p = new Product();
+		Product p = new TestProduct();
 		assertEquals(0, p.getId());
 		assertEquals("no name", p.getName());
 		assertEquals(0, p.getPrice().intValue());
@@ -24,7 +24,7 @@ class ProductTests {
 	
 	@Test
 	void testIdNamePrice() { 
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99));
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99));
 		assertEquals(101, p.getId());
 		assertEquals("Tea", p.getName());
 		assertEquals(1.99, p.getPrice().doubleValue());
@@ -34,7 +34,7 @@ class ProductTests {
 	
 	@Test
 	void testIdNamePriceRating() { 
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 		assertEquals(101, p.getId());
 		assertEquals("Tea", p.getName());
 		assertEquals(1.99, p.getPrice().doubleValue());
@@ -44,27 +44,27 @@ class ProductTests {
 	
 	@Test
 	void testSetId() { 
-		//Product p = new Product();
+		//Product p = new TestProduct();
 		//p.setId(101);
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 
 		assertEquals(101, p.getId());
 	}
 
 	@Test
 	void testSetName() { 
-		//Product p = new Product();
+		//Product p = new TestProduct();
 		//p.setName("Tea");
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 
 		assertEquals("Tea", p.getName());
 	}
 
 	@Test
 	void testSetPrice() {
-		//Product p = new Product();
+		//Product p = new TestProduct();
 		//p.setPrice(BigDecimal.valueOf(1.99));
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 
 		assertEquals(1.99, p.getPrice().doubleValue());
 		assertEquals(0.2, p.getDiscount().doubleValue()); // add this
@@ -79,16 +79,16 @@ class ProductTests {
 		"1.44, 0.14"
 	})
 	void testDiscount(double price, double discount) {
-		//Product p = new Product();
+		//Product p = new TestProduct();
 		//p.setPrice(BigDecimal.valueOf(price));
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(price), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(price), Rating.TWO_STAR);
 
 		assertEquals(discount, p.getDiscount().doubleValue());
 	}
 
 	@Test
 	void testApplyRating() { 
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 		Product p2 = p.applyRating(Rating.THREE_STAR);
 
 		assertEquals(p, p2);
@@ -101,7 +101,7 @@ class ProductTests {
 	
 	@Test
 	void testProductToString() {
-		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99),
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99),
  			Rating.TWO_STAR);
 		String expectedString = "101 Tea 1.99 0.20 " + Rating.TWO_STAR.getStars();
 		assertEquals(expectedString, p.toString());
@@ -109,15 +109,15 @@ class ProductTests {
 
 	@Test
 	void testProductHashCode() {
-		Product p1 = new Product(101, "Tea", BigDecimal.valueOf(1.99), 
+		Product p1 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), 
 				Rating.TWO_STAR);
-		Product p2 = new Product(103, "Cake", BigDecimal.valueOf(3.99), 
+		Product p2 = new TestProduct(103, "Cake", BigDecimal.valueOf(3.99), 
 				Rating.FOUR_STAR);
-		Product p3 = new Product(101, "Tea", BigDecimal.valueOf(1.59), 
+		Product p3 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.59), 
 				Rating.ONE_STAR);
 		Product p4 = p1.applyRating(Rating.THREE_STAR);
 		Product p5 = p1;
-		Product p6 = new Product(101, "TEA", BigDecimal.valueOf(1.59), 
+		Product p6 = new TestProduct(101, "TEA", BigDecimal.valueOf(1.59), 
 				Rating.ONE_STAR);
 
 		// diff id and name 
@@ -143,15 +143,15 @@ class ProductTests {
 
 	@Test
 	void testProductEquals() {
-		Product p1 = new Product(101, "Tea", BigDecimal.valueOf(1.99), 
+		Product p1 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), 
 				Rating.TWO_STAR);
-		Product p2 = new Product(103, "Cake", BigDecimal.valueOf(3.99), 
+		Product p2 = new TestProduct(103, "Cake", BigDecimal.valueOf(3.99), 
 				Rating.FOUR_STAR);
-		Product p3 = new Product(101, "Tea", BigDecimal.valueOf(1.59), 
+		Product p3 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.59), 
 				Rating.ONE_STAR);
 		Product p4 = p1.applyRating(Rating.THREE_STAR);
 		Product p5 = p1;
-		Product p6 = new Product(101, "TEA", BigDecimal.valueOf(1.59), 
+		Product p6 = new TestProduct(101, "TEA", BigDecimal.valueOf(1.59), 
 				Rating.ONE_STAR);
 
 		assertFalse(p1.equals(p2));  // diff id and name

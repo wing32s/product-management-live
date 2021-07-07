@@ -6,7 +6,6 @@ package labs.pm.model;
 import static java.math.RoundingMode.HALF_UP;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * {@code Product} class represents properties and behaviors of
@@ -20,7 +19,7 @@ import java.util.Objects;
  * @version 5.0
  * @author oracle
  */
-public class Product {
+abstract public class Product {
 	/**
 	 * A constant that  defines a
 	 * {@link java.math.BigDecimal BigDecimal} value of the discount rate
@@ -115,9 +114,7 @@ public class Product {
 	 * @return a {@code Product} value with the same id, name, and price as
 	 * this instance.
 	 */
-	public Product applyRating(Rating rating) {
-		return new Product(id, name, price, rating);
-	}
+	abstract public Product applyRating(Rating rating);
 	
 	@Override
 	public String toString() {

@@ -22,7 +22,7 @@ public class Shop {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Product p = new Product();
+		//Product p = new Product();
 		
 		Product p1 = new Drink(101, "Tea", BigDecimal.valueOf(1.99), 
 				Rating.TWO_STAR);
@@ -33,7 +33,7 @@ public class Shop {
 		Product p4 = p2.applyRating(Rating.FOUR_STAR);
 		Product p5 = p3.applyRating(Rating.ONE_STAR);
 		
-		System.out.println(p);
+		//System.out.println(p);
 		System.out.println(p1);
 		System.out.println(p2);
 		System.out.println(p3);
