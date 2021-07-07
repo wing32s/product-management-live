@@ -22,4 +22,15 @@ class FoodTests {
 		assertEquals(1, f.getBestBeforeDate().getDayOfYear());
 		assertEquals(2021, f.getBestBeforeDate().getYear());
 	}
+	
+	@Test
+	void testFoodToString() {
+		Food f = new Food(100, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.ofYearDay(2021, 5));
+
+		String expectedString = "100 Cake 3.99 0.40 " 
+				+ Rating.FOUR_STAR.getStars() + " 2021-01-05";
+		assertEquals(expectedString, f.toString());
+	}
+
 }

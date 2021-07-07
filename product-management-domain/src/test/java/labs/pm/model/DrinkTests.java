@@ -20,4 +20,13 @@ class DrinkTests {
 		assertEquals(Rating.THREE_STAR, d.getRating());
 	}
 
+	@Test
+	void testDrinkToString() {
+		Drink p = new Drink(101, "Tea", BigDecimal.valueOf(1.99), 
+				Rating.TWO_STAR);
+		String expectedString = "101 Tea 1.99 0.20 " 
+				+ Rating.TWO_STAR.getStars();
+		assertEquals(expectedString, p.toString());
+	}
+
 }

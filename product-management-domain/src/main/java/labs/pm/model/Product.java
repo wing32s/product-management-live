@@ -6,6 +6,7 @@ package labs.pm.model;
 import static java.math.RoundingMode.HALF_UP;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * {@code Product} class represents properties and behaviors of
@@ -117,4 +118,30 @@ public class Product {
 	public Product applyRating(Rating rating) {
 		return new Product(id, name, price, rating);
 	}
+	
+	@Override
+	public String toString() {
+		return id + " " + name + " " + price + " " + getDiscount() + " " 
+				+ rating.getStars();
+	}
+
+	@Override
+	public int hashCode() {
+		return 23 * (5 + id) * name.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// if same instance, just return true like Object.equals()
+		if (super.equals(obj)) {
+			return true;
+		}
+		
+		if (getClass() == obj.getClass()) {
+			return hashCode() == obj.hashCode();
+		}
+		
+		return false;
+	}
+	
 }

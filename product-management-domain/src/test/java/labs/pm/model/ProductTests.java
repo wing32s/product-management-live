@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.time.LocalDate;
+
 class ProductTests {
 
 	@Test
@@ -89,11 +91,83 @@ class ProductTests {
 		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
 		Product p2 = p.applyRating(Rating.THREE_STAR);
 
-		assertNotEquals(p, p2);
+		assertEquals(p, p2);
 		assertEquals(101, p2.getId());
 		assertEquals("Tea", p2.getName());
 		assertEquals(1.99, p2.getPrice().doubleValue());
 		assertEquals(0.2, p2.getDiscount().doubleValue());
 		assertEquals(Rating.THREE_STAR, p2.getRating());
 	}
+	
+	@Test
+	void testProductToString() {
+		Product p = new Product(101, "Tea", BigDecimal.valueOf(1.99),
+ 			Rating.TWO_STAR);
+		String expectedString = "101 Tea 1.99 0.20 " + Rating.TWO_STAR.getStars();
+		assertEquals(expectedString, p.toString());
+	}
+
+	@Test
+	void testProductHashCode() {
+		Product p1 = new Product(101, "Tea", BigDecimal.valueOf(1.99), 
+				Rating.TWO_STAR);
+		Product p2 = new Product(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR);
+		Product p3 = new Product(101, "Tea", BigDecimal.valueOf(1.59), 
+				Rating.ONE_STAR);
+		Product p4 = p1.applyRating(Rating.THREE_STAR);
+		Product p5 = p1;
+		Product p6 = new Product(101, "TEA", BigDecimal.valueOf(1.59), 
+				Rating.ONE_STAR);
+
+		// diff id and name 
+		assertNotEquals(p1.hashCode(), p2.hashCode()); 
+		// same id and name
+		assertEquals(p1.hashCode(), p3.hashCode());    
+		// apply rating
+		assertEquals(p1.hashCode(), p4.hashCode());    
+		// same instance 
+		assertEquals(p1.hashCode(), p5.hashCode());
+		// same id diff name    
+		assertNotEquals(p1.hashCode(), p6.hashCode()); 
+		
+		Food f1 = new Food(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now());
+		Product f2 = new Food(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now());
+
+		assertEquals(p2.hashCode(), f1.hashCode()); // diff class (Food)
+		assertEquals(p2.hashCode(), f2.hashCode()); // diff class same type
+
+	}
+
+	@Test
+	void testProductEquals() {
+		Product p1 = new Product(101, "Tea", BigDecimal.valueOf(1.99), 
+				Rating.TWO_STAR);
+		Product p2 = new Product(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR);
+		Product p3 = new Product(101, "Tea", BigDecimal.valueOf(1.59), 
+				Rating.ONE_STAR);
+		Product p4 = p1.applyRating(Rating.THREE_STAR);
+		Product p5 = p1;
+		Product p6 = new Product(101, "TEA", BigDecimal.valueOf(1.59), 
+				Rating.ONE_STAR);
+
+		assertFalse(p1.equals(p2));  // diff id and name
+		assertTrue(p1.equals(p3));   // same id and name
+		assertTrue(p1.equals(p4));   // apply rating
+		assertTrue(p1.equals(p5));   // same instance
+		assertFalse(p1.equals(p6));  // same id diff name
+		
+		Food f1 = new Food(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now());
+		Product f2 = new Food(103, "Cake", BigDecimal.valueOf(3.99), 
+				Rating.FOUR_STAR, LocalDate.now());
+		assertFalse(p2.equals(f1));  // diff class (Food)
+		assertFalse(p2.equals(f2));  // diff class same type
+		assertTrue(f1.equals(f2));   // same id and name, diff type
+
+	}
+	
 }

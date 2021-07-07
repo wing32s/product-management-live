@@ -33,6 +33,14 @@ public class Shop {
 		Product p4 = p2.applyRating(Rating.FOUR_STAR);
 		Product p5 = p3.applyRating(Rating.ONE_STAR);
 		
+		System.out.println(p);
+		System.out.println(p1);
+		System.out.println(p2);
+		System.out.println(p3);
+		System.out.println(p4);
+		System.out.println(p5);
+		
+		/*
 		System.out.printf("%d %s %.2f %.2f %s %n", 
 				p.getId(), p.getName(), p.getPrice(), p.getDiscount(), 
 				p.getRating().getStars());
@@ -51,6 +59,7 @@ public class Shop {
 		System.out.printf("%d %s %.2f %.2f %s %n", 
 				p5.getId(), p5.getName(), p5.getPrice(), p5.getDiscount(), 
 				p5.getRating().getStars());
+				*/
 	}
 
 }
