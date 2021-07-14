@@ -6,9 +6,8 @@ package labs.pm.app;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import labs.pm.model.Drink;
-import labs.pm.model.Food;
 import labs.pm.model.Product;
+import labs.pm.model.ProductManager;
 import labs.pm.model.Rating;
 
 /** 
@@ -23,12 +22,13 @@ public class Shop {
 	 */
 	public static void main(String[] args) {
 		//Product p = new Product();
+		ProductManager pm = new ProductManager();
 		
-		Product p1 = new Drink(101, "Tea", BigDecimal.valueOf(1.99), 
+		Product p1 = pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), 
 				Rating.TWO_STAR);
-		Product p2 = new Drink(102, "Coffee", BigDecimal.valueOf(1.99), 
+		Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), 
 				Rating.THREE_STAR);
-		Product p3 = new Food(103, "Cake", BigDecimal.valueOf(3.99), 
+		Product p3 = pm.createProduct(103, "Cake", BigDecimal.valueOf(3.99), 
 				Rating.FOUR_STAR, LocalDate.now().plusDays(2));
 		Product p4 = p2.applyRating(Rating.FOUR_STAR);
 		Product p5 = p3.applyRating(Rating.ONE_STAR);

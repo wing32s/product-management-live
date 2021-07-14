@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"labs.pm.model","l":"Drink"},{"p":"labs.pm.model","l":"Food"},{"p":"labs.pm.model","l":"Product"},{"p":"labs.pm.model","l":"ProductManager"},{"p":"labs.pm.model","l":"Rating"},{"p":"labs.pm.app","l":"Shop"}]

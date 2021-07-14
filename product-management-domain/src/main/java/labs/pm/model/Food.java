@@ -10,12 +10,12 @@ import java.time.LocalDate;
  * {@code Food} class represents properties and behaviors of
  * food products in the Product Management System.
  * <br>
- * Each food product has an id, name, price, rating, and best before date.
+ * Each food product has a customizable best before date.
  * 
- * @version 5.0
+ * @version 6.0
  * @author oracle
  */
-public class Food extends Product {
+final class Food extends Product {
 	
 	/**
 	 * Create a new {@code Food} instance with the provided id, 
@@ -27,7 +27,7 @@ public class Food extends Product {
 	 * @param rating
 	 * @param bestBeforeDate
 	 */
-	public Food(int id, String name, BigDecimal price, Rating rating, 
+	Food(int id, String name, BigDecimal price, Rating rating, 
 			LocalDate bestBeforeDate) {
 		super(id, name, price, rating, bestBeforeDate);
 	}

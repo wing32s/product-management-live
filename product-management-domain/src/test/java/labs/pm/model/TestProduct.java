@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class TestProduct extends Product {
 
 	public TestProduct() {
+		this(0, "no name", BigDecimal.ZERO);
 	}
 
 	public TestProduct(int id, String name, BigDecimal price) {

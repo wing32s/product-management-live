@@ -12,12 +12,12 @@ import java.time.LocalDate;
  * {@code Product} class represents properties and behaviors of
  * product objects in the Product Management System.
  * <br>
- * Each product has an id, name, price, and rating.
+ * Each product has an id, name, price, rating, and best before date.
  * <br> 
  * Each product can have a discount, calculation based on a 
  * {@link DISCOUNT_RATE discount rate}
  * 
- * @version 5.0
+ * @version 6.0
  * @author oracle
  */
 abstract public class Product {
@@ -35,12 +35,6 @@ abstract public class Product {
 	private final Rating rating;
 	private final LocalDate bestBeforeDate;
 
-	/**
-	 * Create a new {@code Product} instance with default values.
-	 */
-	public Product() {
-		this(0, "no name", BigDecimal.ZERO);
-	}
 	/**
 	 * Create a new {@code Product} instance with the provided id, 
 	 * name, and price.

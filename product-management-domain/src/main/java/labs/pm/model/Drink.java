@@ -11,12 +11,12 @@ import java.time.LocalTime;
  * {@code Drink} class represents properties and behaviors of
  * drink products in the Product Management System.
  * <br>
- * Each drink product has an id, name, price, and rating.
+ * Each drink product has a best before date of today.
  * 
- * @version 5.0
+ * @version 6.0
  * @author oracle
  */
-public class Drink extends Product {
+final class Drink extends Product {
 	static public final LocalTime START_DISCOUNT_TIME = LocalTime.of(16, 30);
 	static public final LocalTime END_DISCOUNT_TIME = LocalTime.of(17, 30);
 		
@@ -29,7 +29,7 @@ public class Drink extends Product {
 	 * @param price
 	 * @param rating
 	 */
-	public Drink(int id, String name, BigDecimal price, Rating rating) {
+	Drink(int id, String name, BigDecimal price, Rating rating) {
 		super(id, name, price, rating, LocalDate.now());
 	}
 
