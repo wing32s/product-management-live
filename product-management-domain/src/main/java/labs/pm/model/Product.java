@@ -6,6 +6,7 @@ package labs.pm.model;
 import static java.math.RoundingMode.HALF_UP;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * {@code Product} class represents properties and behaviors of
@@ -32,6 +33,7 @@ abstract public class Product {
 	private final String name;
 	private final BigDecimal price;
 	private final Rating rating;
+	private final LocalDate bestBeforeDate;
 
 	/**
 	 * Create a new {@code Product} instance with default values.
@@ -48,7 +50,7 @@ abstract public class Product {
 	 * @param price
 	 */
 	protected Product(int id, String name, BigDecimal price) {
-		this(id, name, price, Rating.NOT_RATED);
+		this(id, name, price, Rating.NOT_RATED, LocalDate.now());
 	}
 	
 	/**
@@ -60,11 +62,13 @@ abstract public class Product {
 	 * @param price
 	 * @param rating
 	 */
-	Product(int id, String name, BigDecimal price, Rating rating) {
+	Product(int id, String name, BigDecimal price, Rating rating, 
+			LocalDate bestBeforeDate) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.rating = rating;
+		this.bestBeforeDate = bestBeforeDate;
 	}
 	
 	/**
@@ -86,6 +90,16 @@ abstract public class Product {
 	 */
 	public BigDecimal getPrice() {
 		return price;
+	}
+
+	/**
+	 * The best before date for the product.
+	 * 
+	 * @return the {@link java.time.LocalDate date} that the product is best 
+	 * used by.  By default, all products expire on the current day.
+	 */
+	public LocalDate getBestBeforeDate() {
+		return bestBeforeDate;
 	}
 
 	/** 
@@ -119,7 +133,7 @@ abstract public class Product {
 	@Override
 	public String toString() {
 		return id + " " + name + " " + price + " " + getDiscount() + " " 
-				+ rating.getStars();
+				+ rating.getStars() + " " + bestBeforeDate;
 	}
 
 	@Override

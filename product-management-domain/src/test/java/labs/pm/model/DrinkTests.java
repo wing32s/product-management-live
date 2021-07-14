@@ -3,6 +3,7 @@ package labs.pm.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class DrinkTests {
 				Rating.TWO_STAR);
 		String expectedString = "101 Tea 1.99 " 
 				+ getDrinkDiscount(BigDecimal.valueOf(1.99)) + " "
-				+ Rating.TWO_STAR.getStars();
+				+ Rating.TWO_STAR.getStars() + " " + LocalDate.now();
 		assertEquals(expectedString, p.toString());
 	}
 

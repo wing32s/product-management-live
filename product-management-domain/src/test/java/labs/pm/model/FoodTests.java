@@ -54,6 +54,9 @@ class FoodTests {
 		Product f2 = f.applyRating(Rating.THREE_STAR);
 		
 		assertEquals(f, f2);
+		assertEquals(LocalDate.ofYearDay(2021, 5), 
+				f2.getBestBeforeDate()); 
+
 	}
 
 }

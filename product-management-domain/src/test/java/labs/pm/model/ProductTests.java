@@ -34,7 +34,7 @@ class ProductTests {
 	
 	@Test
 	void testIdNamePriceRating() { 
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR, LocalDate.now());
 		assertEquals(101, p.getId());
 		assertEquals("Tea", p.getName());
 		assertEquals(1.99, p.getPrice().doubleValue());
@@ -46,7 +46,7 @@ class ProductTests {
 	void testSetId() { 
 		//Product p = new TestProduct();
 		//p.setId(101);
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR, LocalDate.now());
 
 		assertEquals(101, p.getId());
 	}
@@ -55,7 +55,7 @@ class ProductTests {
 	void testSetName() { 
 		//Product p = new TestProduct();
 		//p.setName("Tea");
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR, LocalDate.now());
 
 		assertEquals("Tea", p.getName());
 	}
@@ -64,7 +64,7 @@ class ProductTests {
 	void testSetPrice() {
 		//Product p = new TestProduct();
 		//p.setPrice(BigDecimal.valueOf(1.99));
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR, LocalDate.now());
 
 		assertEquals(1.99, p.getPrice().doubleValue());
 		assertEquals(0.2, p.getDiscount().doubleValue()); // add this
@@ -81,14 +81,14 @@ class ProductTests {
 	void testDiscount(double price, double discount) {
 		//Product p = new TestProduct();
 		//p.setPrice(BigDecimal.valueOf(price));
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(price), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(price), Rating.TWO_STAR, LocalDate.now());
 
 		assertEquals(discount, p.getDiscount().doubleValue());
 	}
 
 	@Test
 	void testApplyRating() { 
-		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR);
+		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.TWO_STAR, LocalDate.now());
 		Product p2 = p.applyRating(Rating.THREE_STAR);
 
 		assertEquals(p, p2);
@@ -102,23 +102,24 @@ class ProductTests {
 	@Test
 	void testProductToString() {
 		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99),
- 			Rating.TWO_STAR);
-		String expectedString = "101 Tea 1.99 0.20 " + Rating.TWO_STAR.getStars();
+ 			Rating.TWO_STAR, LocalDate.now());
+		String expectedString = "101 Tea 1.99 0.20 " 
+ 			+ Rating.TWO_STAR.getStars() + " " + LocalDate.now();
 		assertEquals(expectedString, p.toString());
 	}
 
 	@Test
 	void testProductHashCode() {
 		Product p1 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), 
-				Rating.TWO_STAR);
+				Rating.TWO_STAR, LocalDate.now());
 		Product p2 = new TestProduct(103, "Cake", BigDecimal.valueOf(3.99), 
-				Rating.FOUR_STAR);
+				Rating.FOUR_STAR, LocalDate.now());
 		Product p3 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.59), 
-				Rating.ONE_STAR);
+				Rating.ONE_STAR, LocalDate.now());
 		Product p4 = p1.applyRating(Rating.THREE_STAR);
 		Product p5 = p1;
 		Product p6 = new TestProduct(101, "TEA", BigDecimal.valueOf(1.59), 
-				Rating.ONE_STAR);
+				Rating.ONE_STAR, LocalDate.now());
 
 		// diff id and name 
 		assertNotEquals(p1.hashCode(), p2.hashCode()); 
@@ -144,15 +145,15 @@ class ProductTests {
 	@Test
 	void testProductEquals() {
 		Product p1 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), 
-				Rating.TWO_STAR);
+				Rating.TWO_STAR, LocalDate.now());
 		Product p2 = new TestProduct(103, "Cake", BigDecimal.valueOf(3.99), 
-				Rating.FOUR_STAR);
+				Rating.FOUR_STAR, LocalDate.now());
 		Product p3 = new TestProduct(101, "Tea", BigDecimal.valueOf(1.59), 
-				Rating.ONE_STAR);
+				Rating.ONE_STAR, LocalDate.now());
 		Product p4 = p1.applyRating(Rating.THREE_STAR);
 		Product p5 = p1;
 		Product p6 = new TestProduct(101, "TEA", BigDecimal.valueOf(1.59), 
-				Rating.ONE_STAR);
+				Rating.ONE_STAR, LocalDate.now());
 
 		assertFalse(p1.equals(p2));  // diff id and name
 		assertTrue(p1.equals(p3));   // same id and name

@@ -3,6 +3,7 @@ package labs.pm.app;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,10 +43,11 @@ class ShopTests {
 	@Test
 	void testProductIdNamePriceRatingArg() {
 		Product p = new TestProduct(101, "Tea", BigDecimal.valueOf(1.99), 
-				Rating.THREE_STAR);
+				Rating.THREE_STAR, LocalDate.now());
 		assertEquals(101, p.getId());
 		assertEquals("Tea", p.getName());
 		assertEquals(1.99, p.getPrice().doubleValue());
 		assertEquals(Rating.THREE_STAR, p.getRating());
+		assertEquals(LocalDate.now(), p.getBestBeforeDate());
 	}
 }

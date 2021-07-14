@@ -1,27 +1,26 @@
 package labs.pm.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class TestProduct extends Product {
 
 	public TestProduct() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public TestProduct(int id, String name, BigDecimal price) {
 		super(id, name, price);
-		// TODO Auto-generated constructor stub
 	}
 
-	public TestProduct(int id, String name, BigDecimal price, Rating rating) {
-		super(id, name, price, rating);
-		// TODO Auto-generated constructor stub
+	public TestProduct(int id, String name, BigDecimal price, Rating rating, 
+			LocalDate bestBeforeDate) {
+		super(id, name, price, rating, bestBeforeDate);
 	}
 
 	@Override
 	public Product applyRating(Rating rating) {
-		// TODO Auto-generated method stub
-		return new TestProduct(getId(), getName(), getPrice(), rating);
+		return new TestProduct(getId(), getName(), getPrice(), 
+				rating, getBestBeforeDate());
 	}
 
 }

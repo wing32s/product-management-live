@@ -16,7 +16,6 @@ import java.time.LocalDate;
  * @author oracle
  */
 public class Food extends Product {
-	private final LocalDate bestBeforeDate;
 	
 	/**
 	 * Create a new {@code Food} instance with the provided id, 
@@ -30,23 +29,7 @@ public class Food extends Product {
 	 */
 	public Food(int id, String name, BigDecimal price, Rating rating, 
 			LocalDate bestBeforeDate) {
-		super(id, name, price, rating);
-		this.bestBeforeDate = bestBeforeDate;
-	}
-	
-	/**
-	 * The best before date for the product.
-	 * 
-	 * @return the {@link java.time.LocalDate date} that the product is best 
-	 * used by.
-	 */
-	public LocalDate getBestBeforeDate() {
-		return bestBeforeDate;
-	}
-	
-	@Override
-	public String toString() {
-		return super.toString() + " " + bestBeforeDate;
+		super(id, name, price, rating, bestBeforeDate);
 	}
 	
 	/** 
@@ -60,7 +43,7 @@ public class Food extends Product {
 	 */
 	@Override 
 	public BigDecimal getDiscount() { 
-		if (LocalDate.now().isAfter(bestBeforeDate)) {
+		if (LocalDate.now().isAfter(getBestBeforeDate())) {
 			return super.getDiscount();
 		} else {
 			return BigDecimal.ZERO;
@@ -73,7 +56,7 @@ public class Food extends Product {
 	@Override
 	public Food applyRating(Rating rating) {
 		// TODO Auto-generated method stub
-		return new Food(getId(), getName(), getPrice(), rating, bestBeforeDate);
+		return new Food(getId(), getName(), getPrice(), rating, getBestBeforeDate());
 	}
 
 }
